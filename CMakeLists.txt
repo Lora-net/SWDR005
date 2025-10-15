@@ -3,7 +3,7 @@
 # @brief CMake library project
 #
 # --- The Clear BSD License ---
-# Copyright Semtech Corporation 2022. All rights reserved.
+# Copyright Semtech Corporation 2025. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted (subject to the limitations in the disclaimer
@@ -30,10 +30,20 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.25)
 
-project(sx128x_driver LANGUAGES C)
+project(
+    sx128x_driver
+    DESCRIPTION "SX128x driver library"
+    LANGUAGES C
+)
 
-add_library (sx128x_driver_module)
-set(SX128X_DRIVER_MODULE_TARGET sx128x_driver_module)
 add_subdirectory(src)
+
+install(EXPORT Sx128xDriverTargets
+    FILE Sx128xDriverConfig.cmake
+    NAMESPACE sx128x_driver::
+    DESTINATION lib/cmake/Sx128x
+)
+
+export(TARGETS sx128x_driver NAMESPACE sx128x_driver:: FILE Sx128xDriverTargets.cmake)
