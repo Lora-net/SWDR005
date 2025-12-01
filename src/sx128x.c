@@ -174,7 +174,7 @@ typedef enum sx128x_commands_size_e
     // RF Modulation and Packet-Related Functions
     SX128X_SIZE_SET_RF_FREQUENCY        = 4,
     SX128X_SIZE_SET_PKT_TYPE            = 2,
-    SX128X_SIZE_GET_PKT_TYPE            = 2,
+    SX128X_SIZE_GET_PKT_TYPE            = 3,
     SX128X_SIZE_SET_TX_PARAMS           = 3,
     SX128X_SIZE_SET_MODULATION_PARAMS   = 4,
     SX128X_SIZE_SET_PKT_PARAMS          = 8,
