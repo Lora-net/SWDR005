@@ -635,16 +635,17 @@ sx128x_status_t sx128x_set_pkt_type( const void* context, const sx128x_pkt_type_
 
 sx128x_status_t sx128x_get_pkt_type( const void* context, sx128x_pkt_type_t* pkt_type )
 {
-    uint8_t pkt_type_raw;
+    uint8_t pkt_type_raw[SX128X_SIZE_GET_PKT_TYPE] = {0};
 
     const uint8_t buf[SX128X_SIZE_GET_PKT_TYPE] = {
         SX128X_GET_PKT_TYPE,
         SX128X_NOP,
+        SX128X_NOP
     };
 
     sx128x_status_t status =
-        ( sx128x_status_t ) sx128x_hal_read( context, buf, SX128X_SIZE_GET_PKT_TYPE, &pkt_type_raw, 1 );
-    *pkt_type = ( sx128x_pkt_type_t ) pkt_type_raw;
+        ( sx128x_status_t ) sx128x_hal_read( context, buf, SX128X_SIZE_GET_PKT_TYPE, pkt_type_raw, SX128X_SIZE_GET_PKT_TYPE );
+    *pkt_type = ( sx128x_pkt_type_t ) pkt_type_raw[2];
 
     return status;
 }
